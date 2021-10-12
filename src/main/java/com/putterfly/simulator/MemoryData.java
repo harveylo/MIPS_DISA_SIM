@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MemoryData {
-    private static Map<Long,Integer> dataMap=new HashMap<>();
+    private static Map<Integer,Integer> dataMap=new HashMap<>();
 
 
-    public static void storeData(long address,int data){
+    public static void storeData(int address,int data){
         dataMap.put(address,data);
     }
 
-    public static int loadData(long address){
-        return dataMap.get(address);
+    public static int loadData(int address){
+        return dataMap.getOrDefault(address,0);
     }
 
 

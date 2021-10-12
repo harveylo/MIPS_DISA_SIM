@@ -5,7 +5,7 @@ import com.putterfly.instructions.cat1.BranchEqual;
 
 public class BranchEqualFactory implements CommandFactory{
     @Override
-    public Command newCommand(long instruction) {
+    public Command newCommand(int instruction) {
         return new BranchEqual(instruction);
     }
 }

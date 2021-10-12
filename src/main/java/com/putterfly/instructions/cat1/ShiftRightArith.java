@@ -1,55 +1,56 @@
 package com.putterfly.instructions.cat1;
 
 import com.putterfly.instructions.Command;
-import com.putterfly.simulator.MemoryData;
 import com.putterfly.simulator.ProgramCounter;
 import com.putterfly.simulator.Register;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class StoreWord implements Command {
+public class ShiftRightArith implements Command {
     private static final int category = 1;
-    private static final int opCode = 6;
-    private static final String name = "SW";
+    private static final int opCode = 10;
+    private static final String name = "SRA";
 
     private final List<String> parameters;
-    private final short offset;
-    private final int base;
     private final int rt;
+    private final int rd;
+    private final int sa;
 
-    public StoreWord(int instruction) {
+    public ShiftRightArith(int instruction){
         parameters = new LinkedList<>();
-        base = instruction>>>21;
         rt = (instruction&0x1F0000)>>>16;
-        offset = (short)(instruction&0xFFFF);
+        rd = (instruction&0xF800)>>>11;
+        sa = (instruction&0x7C0)>>>6;
+        parameters.add("R"+rd);
         parameters.add("R"+rt);
-        parameters.add(offset+"(R"+base+")");
+        parameters.add("#"+sa);
     }
+
 
     @Override
     public void run() {
-        MemoryData.storeData(Register.getRegisterValue(base)+offset,Register.getRegisterValue(rt));
+        Register.setRegisterValue(rd,Register.getRegisterValue(rt)>>>sa);
         ProgramCounter.advancePC(4);
     }
 
     @Override
     public int getCat() {
-        return category;
+        return 0;
     }
 
     @Override
     public int getOpCode() {
-        return opCode;
+        return 0;
     }
 
     @Override
     public String getName() {
-        return name;
+        return null;
     }
 
     @Override
     public List<String> getParameters() {
-        return parameters;
+        return null;
     }
 }

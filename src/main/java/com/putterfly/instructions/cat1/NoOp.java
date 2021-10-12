@@ -6,29 +6,20 @@ import com.putterfly.simulator.ProgramCounter;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BranchGreaterZero implements Command {
-    private static final int category = 1;
-    private static final int opCode = 4;
-    private static final String name = "BGTZ";
+public class NoOp implements Command {
+    private final static int category = 1;
+    private final static int opCode = 11;
+    private final static String name = "NOP";
 
-    private final List<String> parameters;
+    private final List<String > parameters;
 
-    private final int rs;
-    private final int offset;
-
-    public BranchGreaterZero(int instruction) {
+    public NoOp(int instruction){
         parameters = new LinkedList<>();
-        rs = instruction>>>21;
-        offset = instruction&0xffff;
-        parameters.add("R"+rs);
-        parameters.add("#"+offset);
     }
-
 
     @Override
     public void run() {
-        if(rs>0) ProgramCounter.advancePC(4+offset);
-        else ProgramCounter.advancePC(4);
+        ProgramCounter.advancePC(4);
     }
 
     @Override

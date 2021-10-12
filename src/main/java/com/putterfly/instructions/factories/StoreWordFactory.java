@@ -5,7 +5,7 @@ import com.putterfly.instructions.cat1.StoreWord;
 
 public class StoreWordFactory implements CommandFactory{
     @Override
-    public Command newCommand(long instruction) {
+    public Command newCommand(int instruction) {
         return new StoreWord(instruction);
     }
 }

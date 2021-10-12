@@ -1,5 +1,6 @@
 package com.putterfly.instructions.cat1;
 
+
 import com.putterfly.instructions.Command;
 import com.putterfly.simulator.MemoryData;
 import com.putterfly.simulator.ProgramCounter;
@@ -8,20 +9,20 @@ import com.putterfly.simulator.Register;
 import java.util.LinkedList;
 import java.util.List;
 
-public class StoreWord implements Command {
-    private static final int category = 1;
-    private static final int opCode = 6;
-    private static final String name = "SW";
+public class LoadWord implements Command {
+    private final static int category = 1;
+    private final static int opCode = 7;
+    private final static String name = "LW";
 
     private final List<String> parameters;
-    private final short offset;
     private final int base;
     private final int rt;
+    private final short offset;
 
-    public StoreWord(int instruction) {
+    public LoadWord(int instruction){
         parameters = new LinkedList<>();
         base = instruction>>>21;
-        rt = (instruction&0x1F0000)>>>16;
+        rt = (instruction&0x1F0000)>>16;
         offset = (short)(instruction&0xFFFF);
         parameters.add("R"+rt);
         parameters.add(offset+"(R"+base+")");
@@ -29,7 +30,7 @@ public class StoreWord implements Command {
 
     @Override
     public void run() {
-        MemoryData.storeData(Register.getRegisterValue(base)+offset,Register.getRegisterValue(rt));
+        Register.setRegisterValue(rt, MemoryData.loadData(Register.getRegisterValue(base)+offset));
         ProgramCounter.advancePC(4);
     }
 

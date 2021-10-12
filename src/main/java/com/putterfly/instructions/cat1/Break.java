@@ -13,12 +13,12 @@ public class Break implements Command {
 
     private final List<String> parameters;
 
-    public Break(long instruction){
+    public Break(int instruction){
         parameters = new LinkedList<>();
     }
     @Override
     public void run() {
-        ProgramCounter.setPC(-1L);
+        ProgramCounter.setPC(-1);
     }
 
     @Override

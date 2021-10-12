@@ -16,15 +16,15 @@ public class BranchEqual implements Command {
 
     private int rs;
     private int rt;
-    private long offset;
+    private int offset;
 
     public BranchEqual(){
         parameters = new LinkedList<>();
     }
-    public BranchEqual(long instruction){
+    public BranchEqual(int instruction){
         parameters = new LinkedList<>();
-        rs = (int)(instruction>>>21);
-        rt = (int)((instruction&0x1F0000)>>>16);
+        rs = instruction>>>21;
+        rt = (instruction&0x1F0000)>>>16;
         offset = (instruction&0xffff)<<2;
         parameters.add("R"+rs);
         parameters.add("R"+rt);
@@ -35,7 +35,7 @@ public class BranchEqual implements Command {
     public void run() {
         if(Register.getRegisterValue(rs)==Register.getRegisterValue(rt)){
             ProgramCounter.advancePC(4+offset);
-        }else ProgramCounter.advancePC(4L);
+        }else ProgramCounter.advancePC(4);
     }
 
     @Override

@@ -2,33 +2,36 @@ package com.putterfly.instructions.cat1;
 
 import com.putterfly.instructions.Command;
 import com.putterfly.simulator.ProgramCounter;
+import com.putterfly.simulator.Register;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class BranchGreaterZero implements Command {
+public class ShiftLeftLogic implements Command {
     private static final int category = 1;
-    private static final int opCode = 4;
-    private static final String name = "BGTZ";
+    private static final int opCode = 8;
+    private static final String name = "SLL";
 
     private final List<String> parameters;
+    private final int rt;
+    private final int rd;
+    private final int sa;
 
-    private final int rs;
-    private final int offset;
-
-    public BranchGreaterZero(int instruction) {
+    public ShiftLeftLogic(int instruction){
         parameters = new LinkedList<>();
-        rs = instruction>>>21;
-        offset = instruction&0xffff;
-        parameters.add("R"+rs);
-        parameters.add("#"+offset);
+        rt = (instruction&0x1F0000)>>>16;
+        rd = (instruction&0xF800)>>>11;
+        sa = (instruction&0x7C0)>>>6;
+        parameters.add("R"+rd);
+        parameters.add("R"+rt);
+        parameters.add("#"+sa);
     }
 
 
     @Override
     public void run() {
-        if(rs>0) ProgramCounter.advancePC(4+offset);
-        else ProgramCounter.advancePC(4);
+        Register.setRegisterValue(rd,Register.getRegisterValue(rt)<<sa);
+        ProgramCounter.advancePC(4);
     }
 
     @Override

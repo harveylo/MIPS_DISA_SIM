@@ -14,18 +14,18 @@ public class Jump implements Command {
     private List<String> parameters;
 
 
-    private long jumpAddress;
+    private int jumpAddress;
 
 
     public Jump(){
         parameters = new LinkedList<>();
         jumpAddress = 256;
     }
-    public Jump(long instruction){
+    public Jump(int instruction){
         parameters = new LinkedList<>();
-        long higher = (ProgramCounter.getPC()+4L)&0xf0000000;
-        long rest = instruction<<2;
-        jumpAddress = instruction | higher;
+        int higher = (ProgramCounter.getPC()+4)&0xf0000000;
+        int rest = instruction<<2;
+        jumpAddress = rest | higher;
         parameters.add("#"+jumpAddress);
     }
 

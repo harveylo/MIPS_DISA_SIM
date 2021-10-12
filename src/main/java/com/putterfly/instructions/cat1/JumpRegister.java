@@ -20,9 +20,9 @@ public class JumpRegister implements Command {
         parameters = new LinkedList<>();
         jumpRegister = 0;
     }
-    public JumpRegister(long instruction){
+    public JumpRegister(int instruction){
         parameters = new LinkedList<>();
-        jumpRegister = (int)(instruction>>>21);
+        jumpRegister = instruction>>>21;
         parameters.add("R"+jumpRegister);
     }
 
