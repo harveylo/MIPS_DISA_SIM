@@ -1,7 +1,7 @@
-package com.putterfly.disassembler.factories;
+package com.putterfly.instructions.factories;
 
-import com.putterfly.disassembler.instructions.Command;
-import com.putterfly.disassembler.instructions.cat1.Jump;
+import com.putterfly.instructions.Command;
+import com.putterfly.instructions.cat1.Jump;
 
 public class JumpFactory implements CommandFactory {
     @Override

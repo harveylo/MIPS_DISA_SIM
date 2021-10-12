@@ -1,6 +1,6 @@
-package com.putterfly.disassembler.instructions.cat1;
+package com.putterfly.instructions.cat1;
 
-import com.putterfly.disassembler.instructions.Command;
+import com.putterfly.instructions.Command;
 import com.putterfly.simulator.ProgramCounter;
 import com.putterfly.simulator.Register;
 

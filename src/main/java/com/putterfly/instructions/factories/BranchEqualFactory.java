@@ -1,7 +1,7 @@
-package com.putterfly.disassembler.factories;
+package com.putterfly.instructions.factories;
 
-import com.putterfly.disassembler.instructions.Command;
-import com.putterfly.disassembler.instructions.cat1.BranchEqual;
+import com.putterfly.instructions.Command;
+import com.putterfly.instructions.cat1.BranchEqual;
 
 public class BranchEqualFactory implements CommandFactory{
     @Override

@@ -1,4 +1,4 @@
-package com.putterfly.disassembler.instructions;
+package com.putterfly.instructions;
 
 import java.util.List;
 
