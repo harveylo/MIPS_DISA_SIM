@@ -31,7 +31,7 @@ public class Or implements Command {
 
     @Override
     public void run() {
-        Register.setRegisterValue(rd,rs|rt);
+        Register.setRegisterValue(rd,Register.getRegisterValue(rs)|Register.getRegisterValue(rt));
         ProgramCounter.advancePC(4);
     }
 

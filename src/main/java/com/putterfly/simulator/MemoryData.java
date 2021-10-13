@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MemoryData {
-    private static Map<Integer,Integer> dataMap=new HashMap<>();
+    private static final Map<Integer,Integer> dataMap=new HashMap<>();
 
 
     public static void storeData(int address,int data){

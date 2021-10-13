@@ -1,4 +1,4 @@
-package com.putterfly.instructions.cat1;
+package com.putterfly.instructions.cat3;
 
 import com.putterfly.instructions.Command;
 import com.putterfly.simulator.ProgramCounter;
@@ -8,30 +8,31 @@ import com.putterfly.util.Masks;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ShiftLeftLogic implements Command {
-    private static final int category = 1;
-    private static final int opCode = 8;
-    private static final String name = "SLL";
+public class AddImmediate implements Command {
+    private final static int category = 3;
+    private final static int opCode = 8;
+    private final static String name = "ANDI";
+
+    private final int rs;
+    private final int rt;
+    private final short immediate;
 
     private final List<String> parameters;
-    private final int rt;
-    private final int rd;
-    private final int sa;
 
-    public ShiftLeftLogic(int instruction){
+    public AddImmediate(int instruction){
         parameters = new LinkedList<>();
+        rs = instruction>>>21;
         rt = (instruction& Masks.register2)>>>16;
-        rd = (instruction&Masks.register3)>>>11;
-        sa = (instruction&0x7C0)>>>6;
-        parameters.add("R"+rd);
+        immediate = (short)(instruction&0xFFFF);
         parameters.add("R"+rt);
-        parameters.add("#"+sa);
+        parameters.add("R"+rs);
+        parameters.add("#"+immediate);
     }
-
 
     @Override
     public void run() {
-        Register.setRegisterValue(rd,Register.getRegisterValue(rt)<<sa);
+        long result = (long)Register.getRegisterValue(rs)+immediate;
+        if(!(result>Integer.MAX_VALUE|result<Integer.MIN_VALUE)) Register.setRegisterValue(rt,(int)result);
         ProgramCounter.advancePC(4);
     }
 

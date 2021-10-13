@@ -3,6 +3,7 @@ package com.putterfly.instructions.cat1;
 import com.putterfly.instructions.Command;
 import com.putterfly.simulator.ProgramCounter;
 import com.putterfly.simulator.Register;
+import com.putterfly.util.Masks;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class BranchEqual implements Command {
     public BranchEqual(int instruction){
         parameters = new LinkedList<>();
         rs = instruction>>>21;
-        rt = (instruction&0x1F0000)>>>16;
+        rt = (instruction& Masks.register2)>>>16;
         offset = (instruction&0xffff)<<2;
         parameters.add("R"+rs);
         parameters.add("R"+rt);
