@@ -1,4 +1,4 @@
-package com.putterfly.simulator;
+package com.putterfly.util;
 
 import com.putterfly.instructions.Command;
 

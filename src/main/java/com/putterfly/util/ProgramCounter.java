@@ -1,4 +1,4 @@
-package com.putterfly.simulator;
+package com.putterfly.util;
 
 public class ProgramCounter {
     private static int pc;

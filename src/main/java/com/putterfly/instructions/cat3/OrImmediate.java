@@ -1,8 +1,8 @@
 package com.putterfly.instructions.cat3;
 
 import com.putterfly.instructions.Command;
-import com.putterfly.simulator.ProgramCounter;
-import com.putterfly.simulator.Register;
+import com.putterfly.util.ProgramCounter;
+import com.putterfly.util.Register;
 import com.putterfly.util.Masks;
 
 import java.util.LinkedList;

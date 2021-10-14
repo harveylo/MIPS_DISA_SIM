@@ -1,7 +1,7 @@
 package com.putterfly.instructions.cat1;
 
 import com.putterfly.instructions.Command;
-import com.putterfly.simulator.ProgramCounter;
+import com.putterfly.util.ProgramCounter;
 
 import java.util.LinkedList;
 import java.util.List;

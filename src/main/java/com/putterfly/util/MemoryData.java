@@ -1,11 +1,13 @@
-package com.putterfly.simulator;
+package com.putterfly.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MemoryData {
-    private static final Map<Integer,Integer> dataMap=new HashMap<>();
 
+    public static int startAddress;
+    public static int endAddress;
+    private static final Map<Integer,Integer> dataMap=new HashMap<>();
 
     public static void storeData(int address,int data){
         dataMap.put(address,data);

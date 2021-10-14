@@ -1,7 +1,7 @@
-package com.putterfly.simulator;
+package com.putterfly.util;
 
 public class Register {
-    private static int[] registers;
+    private static int[] registers = new int[32];
     public static int getRegisterValue(int index){
         return registers[index];
     }

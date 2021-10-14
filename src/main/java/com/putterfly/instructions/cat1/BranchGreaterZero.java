@@ -1,7 +1,8 @@
 package com.putterfly.instructions.cat1;
 
 import com.putterfly.instructions.Command;
-import com.putterfly.simulator.ProgramCounter;
+import com.putterfly.util.ProgramCounter;
+import com.putterfly.util.Register;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +20,8 @@ public class BranchGreaterZero implements Command {
     public BranchGreaterZero(int instruction) {
         parameters = new LinkedList<>();
         rs = instruction>>>21;
-        offset = instruction&0xffff;
+        short tem = (short)(instruction&0xffff);
+        offset = (int)tem<<2;
         parameters.add("R"+rs);
         parameters.add("#"+offset);
     }
@@ -27,7 +29,7 @@ public class BranchGreaterZero implements Command {
 
     @Override
     public void run() {
-        if(rs>0) ProgramCounter.advancePC(4+offset);
+        if(Register.getRegisterValue(rs) >0) ProgramCounter.advancePC(4+offset);
         else ProgramCounter.advancePC(4);
     }
 
